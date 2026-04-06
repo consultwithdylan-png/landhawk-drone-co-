@@ -1,0 +1,20 @@
+{
+  "name": "landhawk-drone-co",
+  "version": "1.0.0",
+  "description": "Static landing page builder with Cloudflare Pages deployment",
+  "scripts": {
+    "build": "node build.js --all",
+    "build:site": "node build.js",
+    "clean": "rm -rf dist",
+    "dev": "node build.js --all"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.8",
+    "clean-css": "^5.3.3",
+    "html-minifier-terser": "^7.2.0",
+    "terser": "^5.31.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

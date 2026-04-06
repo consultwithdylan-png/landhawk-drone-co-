@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{page.title}}{{seo.title_suffix}}</title>
+  <meta name="description" content="{{page.meta_description}}" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{page.title}}{{seo.title_suffix}}" />
+  <meta property="og:description" content="{{page.meta_description}}" />
+  <meta property="og:image" content="https://{{domain}}{{seo.default_og_image}}" />
+  <meta property="og:url" content="https://{{domain}}{{page.path}}" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{page.title}}{{seo.title_suffix}}" />
+  <meta name="twitter:description" content="{{page.meta_description}}" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://{{domain}}{{page.path}}" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="{{fonts_url}}" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/variables.css?v={{cachebust}}" />
+  <link rel="stylesheet" href="/css/style.min.css?v={{cachebust}}" />
+
+  {{#if integrations.google_tag_manager_id}}
+  <!-- GTM -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','{{integrations.google_tag_manager_id}}');</script>
+  {{/if}}
+</head>
+<body>
+
+  {{#if integrations.google_tag_manager_id}}
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{integrations.google_tag_manager_id}}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  {{/if}}
+
+  {{> header}}
+
+  <main>
+    {{{page.content}}}
+  </main>
+
+  {{> footer}}
+
+  <script src="/js/main.min.js?v={{cachebust}}"></script>
+
+</body>
+</html>

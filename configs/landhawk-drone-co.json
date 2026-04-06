@@ -1,0 +1,61 @@
+{
+  "site_id": "landhawk-drone-co",
+  "domain": "landhawkdrone.com",
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&family=Inter:wght@400;500&display=swap",
+
+  "branding": {
+    "blue_primary": "#1565C0",
+    "blue_mid": "#2196F3",
+    "blue_light": "#E3F2FD",
+    "blue_dark": "#0C447C",
+    "blue_deeper": "#042C53",
+    "midnight": "#0A1628",
+    "cloud": "#F5F8FF",
+    "steel": "#64748B",
+    "border": "rgba(0,0,0,0.08)",
+    "white": "#ffffff",
+    "text": "#0F1923",
+    "text_muted": "#64748B",
+    "radius_md": "8px",
+    "radius_lg": "14px",
+    "font_display": "'Syne', sans-serif",
+    "font_body": "'Inter', sans-serif"
+  },
+
+  "business": {
+    "name": "Landhawk Drone Co.",
+    "email": "hello@landhawkdrone.com",
+    "tagline": "Your land, watched over. Reported on. Always."
+  },
+
+  "integrations": {
+    "google_tag_manager_id": "",
+    "google_analytics_id": "",
+    "facebook_pixel_id": ""
+  },
+
+  "seo": {
+    "title_suffix": " | Landhawk Drone Co.",
+    "default_meta_description": "Landhawk Drone Co. deploys autonomous drone surveillance systems that monitor your property 24/7. AI-powered reporting, FAA waiver support, real-time SMS alerts.",
+    "default_og_image": "/images/og-image.jpg"
+  },
+
+  "nav_links": [
+    { "label": "How it works", "slug": "#how-it-works" },
+    { "label": "AI reporting", "slug": "#ai-reporting" },
+    { "label": "FAA compliance", "slug": "#faa" },
+    { "label": "Use cases", "slug": "#use-cases" }
+  ],
+
+  "pages": [
+    {
+      "template": "pages/index.html",
+      "output": "index.html",
+      "title": "Automated Drone Surveillance for Landowners",
+      "meta_description": "Landhawk Drone Co. deploys autonomous drone surveillance systems that monitor your property 24/7. AI-powered reporting, FAA waiver support, real-time SMS alerts.",
+      "path": "/",
+      "priority": "1.0",
+      "changefreq": "weekly"
+    }
+  ]
+}
