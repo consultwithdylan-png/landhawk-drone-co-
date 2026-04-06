@@ -1,6 +1,6 @@
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">Automated drone surveillance + AI reporting — fully FAA compliant</div>
+  <div class="hero-badge">Automated Drone Surveillance Systems + AI Reporting For Land Owners — Fully FAA Compliant</div>
   <h1>Your land, watched over.<br><em>Reported on. Always.</em></h1>
   <p>Landhawk Drone Co. deploys autonomous drone surveillance systems that monitor your property 24/7 — detecting threats, tracking land health, and sending AI-generated reports straight to your phone via SMS. We handle the hardware, the software, and the FAA paperwork.</p>
   <div class="hero-btns">
@@ -181,9 +181,74 @@
   </div>
 </div>
 
-<!-- CTA -->
-<div class="cta-strip" id="assessment">
-  <h2>Know everything that happens on your land.</h2>
-  <p>Book a free 30-minute assessment. We'll map your property, assess your FAA requirements, and show you exactly what Landhawk can do.</p>
-  <a href="mailto:{{business.email}}" class="btn-primary">Book your free assessment</a>
+<!-- ASSESSMENT FORM -->
+<div class="assessment-section" id="assessment">
+  <div class="assessment-inner">
+    <div class="assessment-header">
+      <h2>Book your free assessment</h2>
+      <p>Tell us about your land and we'll reach out to schedule a free 30-minute consultation.</p>
+    </div>
+    <form class="assessment-form" id="assessment-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" placeholder="John Smith" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="john@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="state">State</label>
+          <select id="state" name="state" required>
+            <option value="" disabled selected>Select your state</option>
+            <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="acreage">Property size</label>
+          <select id="acreage" name="acreage" required>
+            <option value="" disabled selected>Select acreage</option>
+            <option>Under 50 acres</option>
+            <option>50 – 200 acres</option>
+            <option>200 – 500 acres</option>
+            <option>500 – 1,000 acres</option>
+            <option>1,000+ acres</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="land-type">Type of land</label>
+          <select id="land-type" name="land_type" required>
+            <option value="" disabled selected>Select land type</option>
+            <option>Agriculture / Farming</option>
+            <option>Ranch / Livestock</option>
+            <option>Private Estate</option>
+            <option>Timber / Forestry</option>
+            <option>Mining / Commercial</option>
+            <option>Hunting / Recreation</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="details">What are your biggest concerns about your land? (optional)</label>
+        <textarea id="details" name="details" placeholder="e.g. trespassing, crop monitoring, wildlife tracking..." rows="3"></textarea>
+      </div>
+      <button type="submit" class="form-submit">Book my free assessment →</button>
+      <p class="form-note">No commitment. We'll contact you within 1 business day.</p>
+    </form>
+    <div class="form-success" id="form-success" style="display:none;">
+      <div class="success-icon">✓</div>
+      <h3>You're booked in.</h3>
+      <p>We'll reach out within 1 business day to schedule your assessment.</p>
+    </div>
+  </div>
 </div>
