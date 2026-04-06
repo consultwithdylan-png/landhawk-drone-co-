@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Landhawk Drone Co. — Automated Drone Surveillance for Landowners</title>
+  <meta name="description" content="Landhawk Drone Co. deploys autonomous drone surveillance systems that monitor your property 24/7. AI-powered reporting, FAA waiver support, real-time SMS alerts." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue-primary: #1565C0;
+      --blue-mid: #2196F3;
+      --blue-light: #E3F2FD;
+      --blue-dark: #0C447C;
+      --blue-deeper: #042C53;
+      --midnight: #0A1628;
+      --cloud: #F5F8FF;
+      --steel: #64748B;
+      --border: rgba(0,0,0,0.08);
+      --white: #ffffff;
+      --text: #0F1923;
+      --text-muted: #64748B;
+      --radius-md: 8px;
+      --radius-lg: 14px;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+    .nav-logo span { color: var(--blue-primary); }
+    .nav-logo sub {
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--steel);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      vertical-align: baseline;
+      margin-left: 3px;
+      font-family: var(--font-body);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--steel);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--blue-primary);
+      color: var(--white);
+      border: none;
+      padding: 9px 20px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: var(--font-body);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--blue-dark); }
+
+    /* HERO */
+    .hero {
+      padding: 6rem 2rem 5rem;
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--blue-light);
+      color: var(--blue-dark);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.3px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--blue-primary);
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--steel);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--blue-primary);
+      color: var(--white);
+      border: none;
+      padding: 14px 28px;
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: var(--font-body);
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 14px 28px;
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: var(--font-body);
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color 0.2s, transform 0.1s;
+    }
+    .btn-secondary:hover { border-color: #999; transform: translateY(-1px); }
+
+    /* STATS */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin: 0;
+    }
+    .stat {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--blue-primary);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label { font-size: 13px; color: var(--steel); }
+
+    /* SECTIONS */
+    .section {
+      padding: 5rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--blue-mid);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 0.75rem;
+    }
+
+    .section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.5px;
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--steel);
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+      max-width: 600px;
+    }
+
+    /* PROBLEM CARDS */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .problem-card {
+      background: var(--cloud);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+    }
+    .problem-card h3 {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .problem-card p { font-size: 13px; color: var(--steel); line-height: 1.6; }
+
+    /* HOW IT WORKS */
+    .how {
+      background: var(--cloud);
+      padding: 5rem 2rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .how-inner { max-width: 900px; margin: 0 auto; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+      gap: 12px;
+      margin-top: 2.5rem;
+    }
+
+    .step {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+    }
+    .step.highlight { border: 2px solid var(--blue-mid); }
+
+    .step-num {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--blue-mid);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .step h3 {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .step p { font-size: 13px; color: var(--steel); line-height: 1.6; }
+
+    /* AI REPORTING */
+    .report-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 2.5rem;
+    }
+
+    .report-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+    }
+    .report-card.featured { border: 2px solid var(--blue-mid); }
+
+    .report-type {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--blue-dark);
+      background: var(--blue-light);
+      padding: 3px 10px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+    .report-card h3 {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .report-card p { font-size: 13px; color: var(--steel); line-height: 1.6; }
+
+    /* SMS MOCKUP */
+    .sms-wrap {
+      background: var(--cloud);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-top: 2rem;
+      border: 1px solid var(--border);
+    }
+    .sms-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--steel);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .sms-bubbles { display: flex; flex-direction: column; gap: 10px; max-width: 400px; }
+    .sms-time { font-size: 11px; color: var(--steel); text-align: center; margin: 4px 0; }
+    .sms-bubble {
+      background: var(--blue-primary);
+      color: var(--white);
+      border-radius: 16px 16px 4px 16px;
+      padding: 12px 16px;
+      font-size: 13px;
+      line-height: 1.6;
+      align-self: flex-end;
+    }
+    .sms-bubble.incoming {
+      background: var(--white);
+      color: var(--text);
+      border-radius: 16px 16px 16px 4px;
+      border: 1px solid var(--border);
+      align-self: flex-start;
+    }
+
+    /* USE CASES */
+    .use-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      margin-top: 2.5rem;
+    }
+    .use-card {
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      border: 1px solid var(--border);
+      background: var(--white);
+    }
+    .use-tag {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--blue-dark);
+      background: var(--blue-light);
+      padding: 3px 10px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+    .use-card h3 {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .use-card p { font-size: 14px; color: var(--steel); line-height: 1.6; }
+
+    /* FAA */
+    .faa-wrap { padding: 0 2rem 5rem; max-width: 900px; margin: 0 auto; }
+    .faa-inner {
+      background: var(--blue-light);
+      border-radius: var(--radius-lg);
+      border: 1px solid #BBDEFB;
+      padding: 2.5rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .faa-badge {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--blue-deeper);
+      background: #BBDEFB;
+      padding: 3px 10px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+    .faa-inner h2 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--blue-deeper);
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+    .faa-inner > div > p { font-size: 14px; color: var(--blue-dark); line-height: 1.7; }
+
+    .faa-checklist { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .faa-checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--blue-deeper);
+      line-height: 1.5;
+    }
+    .faa-check {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--blue-primary);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    /* CTA */
+    .cta-strip {
+      background: var(--midnight);
+      color: var(--white);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    .cta-strip h2 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.5px;
+    }
+    .cta-strip p { font-size: 17px; opacity: 0.65; margin-bottom: 2rem; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+    .cta-strip .btn-primary { font-size: 16px; padding: 15px 32px; }
+
+    /* FOOTER */
+    footer {
+      padding: 1.75rem 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .footer-logo span { color: var(--blue-primary); }
+    .footer-copy { font-size: 13px; color: var(--steel); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat:nth-child(odd) { border-right: 1px solid var(--border); }
+      .stat:last-child { border-bottom: none; }
+      .faa-inner { grid-template-columns: 1fr; padding: 1.75rem; }
+      nav .nav-links { display: none; }
+      .nav-cta { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Land<span>hawk</span> <sub>Drone Co.</sub></a>
+    <ul class="nav-links">
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#ai-reporting">AI reporting</a></li>
+      <li><a href="#faa">FAA compliance</a></li>
+      <li><a href="#use-cases">Use cases</a></li>
+    </ul>
+    <a href="#assessment" class="nav-cta">Book a free assessment</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">Automated drone surveillance + AI reporting — fully FAA compliant</div>
+    <h1>Your land, watched over.<br><em>Reported on. Always.</em></h1>
+    <p>Landhawk Drone Co. deploys autonomous drone surveillance systems that monitor your property 24/7 — detecting threats, tracking land health, and sending AI-generated reports straight to your phone via SMS. We handle the hardware, the software, and the FAA paperwork.</p>
+    <div class="hero-btns">
+      <a href="#assessment" class="btn-primary">Book a free assessment</a>
+      <a href="#how-it-works" class="btn-secondary">See how it works</a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">Autonomous coverage</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">Acres per system</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">&lt;90s</div>
+      <div class="stat-label">SMS alert time</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3x</div>
+      <div class="stat-label">Report types included</div>
+    </div>
+  </div>
+
+  <!-- PROBLEM -->
+  <div class="section">
+    <div class="section-label">The problem</div>
+    <h2>Land is expensive. Not knowing what's happening is worse.</h2>
+    <p class="section-sub">Landowners face threats they can't see — and no easy way to stay informed.</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <h3>Trespassing &amp; theft</h3>
+        <p>Poachers, squatters, and thieves cost landowners billions each year — often undetected for weeks.</p>
+      </div>
+      <div class="problem-card">
+        <h3>Crop &amp; land damage</h3>
+        <p>Pest pressure, irrigation failures, and erosion go unnoticed until the damage is already done.</p>
+      </div>
+      <div class="problem-card">
+        <h3>No actionable intel</h3>
+        <p>Even with cameras, landowners get raw footage — not clear answers about what happened and what to do.</p>
+      </div>
+      <div class="problem-card">
+        <h3>Regulatory confusion</h3>
+        <p>FAA drone regulations are complex and constantly evolving — most landowners don't know where to start.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="how" id="how-it-works">
+    <div class="how-inner">
+      <div class="section-label">How it works</div>
+      <h2 style="font-family: var(--font-display); font-size: clamp(24px, 3vw, 34px); font-weight: 600; letter-spacing: -0.5px; margin-bottom: 0.75rem;">Fly, detect, report. Automatically.</h2>
+      <p style="font-size: 17px; color: var(--steel); line-height: 1.7; max-width: 600px;">Landhawk manages everything — hardware, flight planning, AI analysis, SMS reporting, and FAA compliance.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01 — Assess</div>
+          <h3>Land survey</h3>
+          <p>We map your property, identify coverage zones, and determine FAA authorizations needed.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02 — Comply</div>
+          <h3>FAA waiver filing</h3>
+          <p>Our team handles all FAA waivers and airspace authorizations on your behalf.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03 — Deploy</div>
+          <h3>System installation</h3>
+          <p>We install automated drone docks, charge stations, and communication hardware on-site.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">04 — Monitor</div>
+          <h3>Autonomous patrol</h3>
+          <p>Drones fly pre-programmed routes day and night, feeding live data to our AI engine.</p>
+        </div>
+        <div class="step highlight">
+          <div class="step-num">05 — Report</div>
+          <h3>AI reporting</h3>
+          <p>Our AI analyzes every flight and sends you incident alerts, daily summaries, and weekly reports via SMS.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI REPORTING -->
+  <div class="section" id="ai-reporting">
+    <div class="section-label">AI reporting</div>
+    <h2>Not just surveillance. Actionable intelligence.</h2>
+    <p class="section-sub">Landhawk's AI doesn't just watch your land — it tells you exactly what happened, where, and what to do about it. Delivered straight to your phone.</p>
+    <div class="report-grid">
+      <div class="report-card featured">
+        <div class="report-type">Real-time</div>
+        <h3>Incident alerts</h3>
+        <p>The moment something's detected — a trespasser, unusual movement, or land anomaly — you get an SMS with a precise location, description, and recommended action. Under 90 seconds from detection to your phone.</p>
+      </div>
+      <div class="report-card">
+        <div class="report-type">Daily</div>
+        <h3>Daily summaries</h3>
+        <p>Every morning, receive a concise AI-written summary of the previous day's activity — flights completed, areas covered, incidents flagged, and land health observations.</p>
+      </div>
+      <div class="report-card">
+        <div class="report-type">Weekly</div>
+        <h3>Weekly insights</h3>
+        <p>A deeper weekly report tracking trends over time — recurring issues, coverage patterns, seasonal changes, and recommendations to improve your land's security and health.</p>
+      </div>
+      <div class="report-card">
+        <div class="report-type">Delivered via SMS</div>
+        <h3>No app required</h3>
+        <p>All reports come straight to your phone as SMS messages. No app to download, no dashboard to log into. Just clear, plain-language intelligence from your land.</p>
+      </div>
+    </div>
+    <div class="sms-wrap">
+      <div class="sms-label">Example SMS alerts</div>
+      <div class="sms-bubbles">
+        <div class="sms-time">Today, 2:14 AM</div>
+        <div class="sms-bubble incoming">🔴 INCIDENT — Landhawk detected movement near your north perimeter (Grid B4). Possible trespasser. Drone footage saved. Coordinates: 32.4521°N, 84.9817°W. Recommended: contact local authorities.</div>
+        <div class="sms-time">Today, 7:00 AM</div>
+        <div class="sms-bubble incoming">📋 DAILY SUMMARY — 6 flights completed overnight. 1 incident flagged (north perimeter, 2:14 AM). Crop zones A–C normal. Irrigation anomaly detected in Zone D — possible leak. No further intrusions. Full report available on request.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- USE CASES -->
+  <div class="section" id="use-cases">
+    <div class="section-label">Use cases</div>
+    <h2>Built for every type of landowner.</h2>
+    <p class="section-sub">Whether you're managing 50 acres or 5,000, Landhawk scales to your land and your needs.</p>
+    <div class="use-grid">
+      <div class="use-card">
+        <div class="use-tag">Agriculture</div>
+        <h3>Farmers &amp; ranchers</h3>
+        <p>Get daily AI reports on crop health, irrigation issues, and livestock — plus instant SMS alerts the moment anything goes wrong.</p>
+      </div>
+      <div class="use-card">
+        <div class="use-tag">Private estates</div>
+        <h3>Estate owners</h3>
+        <p>Stay informed about your property 24/7 with weekly intelligence reports and real-time trespassing alerts — no matter where you are.</p>
+      </div>
+      <div class="use-card">
+        <div class="use-tag">Commercial land</div>
+        <h3>Timber &amp; mining</h3>
+        <p>Track remote operations, get AI-written compliance reports, and receive instant alerts for equipment tampering or unauthorized access.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAA -->
+  <div class="faa-wrap" id="faa">
+    <div class="faa-inner">
+      <div>
+        <div class="faa-badge">FAA compliance</div>
+        <h2>We handle the FAA paperwork. You just fly.</h2>
+        <p>Navigating FAA drone regulations is one of the biggest hurdles for landowners. Landhawk takes that burden completely off your plate — from initial waiver applications to ongoing compliance management.</p>
+      </div>
+      <ul class="faa-checklist">
+        <li>
+          <div class="faa-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Part 107 waiver applications filed on your behalf
+        </li>
+        <li>
+          <div class="faa-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          LAANC airspace authorization for controlled zones
+        </li>
+        <li>
+          <div class="faa-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Night flight and beyond-visual-line-of-sight waivers
+        </li>
+        <li>
+          <div class="faa-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Ongoing compliance monitoring and renewal management
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-strip" id="assessment">
+    <h2>Know everything that happens on your land.</h2>
+    <p>Book a free 30-minute assessment. We'll map your property, assess your FAA requirements, and show you exactly what Landhawk can do.</p>
+    <a href="mailto:hello@landhawkdrone.com" class="btn-primary">Book your free assessment</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="footer-logo">Land<span>hawk</span> Drone Co.</a>
+    <div class="footer-copy">© 2026 Landhawk Drone Co. All rights reserved.</div>
+  </footer>
+
+</body>
+</html>
