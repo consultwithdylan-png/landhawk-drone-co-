@@ -260,6 +260,14 @@ async function buildSite(siteId) {
   console.log('  ✓ robots.txt');
 
   console.log(`Done: ${siteId} → dist/${siteId}/`);
+
+  // Sync to preview folder for local preview server
+  const previewDir = path.join(require('os').homedir(), 'landhawk-dist');
+  if (fs.existsSync(previewDir)) {
+    fs.rmSync(previewDir, { recursive: true });
+  }
+  copyDir(outputDir, previewDir);
+  console.log(`  ✓ Preview synced → ~/landhawk-dist/`);
 }
 
 // ─── Main ────────────────────────────────────────────────
