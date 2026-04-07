@@ -36,7 +36,7 @@
 
   "seo": {
     "title_suffix": " | Landhawk Drone Co.",
-    "default_meta_description": "Landhawk Drone Co. deploys autonomous drone surveillance systems that monitor your property 24/7. AI-powered reporting, FAA waiver support, real-time SMS alerts.",
+    "default_meta_description": "Autonomous drone surveillance for landowners, farmers, and ranchers. 24/7 property monitoring, AI-generated SMS reports, and full FAA compliance — nationwide.",
     "default_og_image": "/images/og-image.jpg"
   },
 
@@ -51,8 +51,8 @@
     {
       "template": "pages/index.html",
       "output": "index.html",
-      "title": "Automated Drone Surveillance for Landowners",
-      "meta_description": "Landhawk Drone Co. deploys autonomous drone surveillance systems that monitor your property 24/7. AI-powered reporting, FAA waiver support, real-time SMS alerts.",
+      "title": "Autonomous Drone Surveillance for Farms, Ranches & Large Properties",
+      "meta_description": "Landhawk Drone Co. provides autonomous drone surveillance for landowners, farmers, and ranchers nationwide. 24/7 monitoring, AI SMS reports, trespassing detection, and FAA waiver handling. Book a free assessment.",
       "path": "/",
       "priority": "1.0",
       "changefreq": "weekly"
@@ -60,8 +60,8 @@
     {
       "template": "pages/process.html",
       "output": "process/index.html",
-      "title": "Your Property Surveillance Roadmap",
-      "meta_description": "See exactly what your journey looks like with Landhawk — from first consultation to fully autonomous drone surveillance. 8 phases, 8–12 weeks.",
+      "title": "How Drone Surveillance Installation Works — From Assessment to Go-Live",
+      "meta_description": "See the complete 8-phase process for getting autonomous drone surveillance installed on your property. FAA filing, hardware setup, and go-live in 8–12 weeks.",
       "path": "/process/",
       "priority": "0.8",
       "changefreq": "monthly"
