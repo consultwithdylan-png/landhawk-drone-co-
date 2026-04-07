@@ -1,0 +1,419 @@
+<style>
+  .process-page {
+    background: #0a0f1e;
+    color: #e8eaf0;
+    min-height: 100vh;
+    padding: 40px 20px 60px;
+  }
+  .process-page .header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .process-page .logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  .process-page .logo-icon {
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, #1a6fd4, #0ea5e9);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 0 24px rgba(14,165,233,0.4);
+  }
+  .process-page .company-name {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    background: linear-gradient(90deg, #60a5fa, #38bdf8, #7dd3fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .process-page .header h1 {
+    font-size: 38px;
+    font-weight: 800;
+    color: #f1f5f9;
+    margin-bottom: 10px;
+  }
+  .process-page .header p {
+    font-size: 16px;
+    color: #94a3b8;
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .process-page .timeline {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .process-page .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, #1a6fd4 0%, #0ea5e9 40%, #7c3aed 80%, #10b981 100%);
+    transform: translateX(-50%);
+    border-radius: 2px;
+  }
+  .process-page .phase {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 44px;
+    position: relative;
+    gap: 0;
+  }
+  .process-page .phase:nth-child(odd) { flex-direction: row; }
+  .process-page .phase:nth-child(even) { flex-direction: row-reverse; }
+  .process-page .card {
+    width: calc(50% - 48px);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 18px;
+    padding: 24px 26px;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+    backdrop-filter: blur(6px);
+  }
+  .process-page .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+  .process-page .phase:nth-child(odd) .card  { margin-right: auto; }
+  .process-page .phase:nth-child(even) .card { margin-left: auto; }
+  .process-page .phase:nth-child(odd) .card::after {
+    content: '';
+    position: absolute;
+    right: -10px; top: 26px;
+    border: 10px solid transparent;
+    border-left-color: rgba(255,255,255,0.09);
+  }
+  .process-page .phase:nth-child(even) .card::after {
+    content: '';
+    position: absolute;
+    left: -10px; top: 26px;
+    border: 10px solid transparent;
+    border-right-color: rgba(255,255,255,0.09);
+  }
+  .process-page .node {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 22px;
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    border: 3px solid #0a0f1e;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+  .process-page .phase-1 .node  { background: linear-gradient(135deg,#1a6fd4,#3b82f6); box-shadow:0 0 18px rgba(59,130,246,0.5); }
+  .process-page .phase-2 .node  { background: linear-gradient(135deg,#7c3aed,#a855f7); box-shadow:0 0 18px rgba(168,85,247,0.5); }
+  .process-page .phase-3 .node  { background: linear-gradient(135deg,#0284c7,#06b6d4); box-shadow:0 0 18px rgba(6,182,212,0.5); }
+  .process-page .phase-4 .node  { background: linear-gradient(135deg,#b45309,#f59e0b); box-shadow:0 0 18px rgba(245,158,11,0.5); }
+  .process-page .phase-5 .node  { background: linear-gradient(135deg,#0f766e,#14b8a6); box-shadow:0 0 18px rgba(20,184,166,0.5); }
+  .process-page .phase-6 .node  { background: linear-gradient(135deg,#15803d,#22c55e); box-shadow:0 0 18px rgba(34,197,94,0.5); }
+  .process-page .phase-7 .node  { background: linear-gradient(135deg,#0369a1,#38bdf8); box-shadow:0 0 18px rgba(56,189,248,0.5); }
+  .process-page .phase-8 .node  { background: linear-gradient(135deg,#be185d,#ec4899); box-shadow:0 0 18px rgba(236,72,153,0.5); }
+  .process-page .phase-1 .card  { border-color: rgba(59,130,246,0.3);  }
+  .process-page .phase-2 .card  { border-color: rgba(168,85,247,0.3);  }
+  .process-page .phase-3 .card  { border-color: rgba(6,182,212,0.3);   }
+  .process-page .phase-4 .card  { border-color: rgba(245,158,11,0.3);  }
+  .process-page .phase-5 .card  { border-color: rgba(20,184,166,0.3);  }
+  .process-page .phase-6 .card  { border-color: rgba(34,197,94,0.3);   }
+  .process-page .phase-7 .card  { border-color: rgba(56,189,248,0.3);  }
+  .process-page .phase-8 .card  { border-color: rgba(236,72,153,0.3);  }
+  .process-page .phase-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+  }
+  .process-page .phase-1 .phase-badge { background:rgba(59,130,246,0.18); color:#93c5fd; }
+  .process-page .phase-2 .phase-badge { background:rgba(168,85,247,0.18); color:#d8b4fe; }
+  .process-page .phase-3 .phase-badge { background:rgba(6,182,212,0.18);  color:#67e8f9; }
+  .process-page .phase-4 .phase-badge { background:rgba(245,158,11,0.18); color:#fcd34d; }
+  .process-page .phase-5 .phase-badge { background:rgba(20,184,166,0.18); color:#5eead4; }
+  .process-page .phase-6 .phase-badge { background:rgba(34,197,94,0.18);  color:#86efac; }
+  .process-page .phase-7 .phase-badge { background:rgba(56,189,248,0.18); color:#7dd3fc; }
+  .process-page .phase-8 .phase-badge { background:rgba(236,72,153,0.18); color:#f9a8d4; }
+  .process-page .card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-bottom: 6px;
+  }
+  .process-page .card .timeline-tag {
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .process-page .card p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #94a3b8;
+    margin-bottom: 14px;
+  }
+  .process-page .milestones {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .process-page .milestones li {
+    font-size: 13px;
+    color: #cbd5e1;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .process-page .milestones li::before {
+    content: '✓';
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .process-page .phase-1 .milestones li::before { color:#60a5fa; }
+  .process-page .phase-2 .milestones li::before { color:#c084fc; }
+  .process-page .phase-3 .milestones li::before { color:#22d3ee; }
+  .process-page .phase-4 .milestones li::before { color:#fbbf24; }
+  .process-page .phase-5 .milestones li::before { color:#2dd4bf; }
+  .process-page .phase-6 .milestones li::before { color:#4ade80; }
+  .process-page .phase-7 .milestones li::before { color:#38bdf8; }
+  .process-page .phase-8 .milestones li::before { color:#f472b6; }
+  .process-page .highlight-box {
+    margin-top: 14px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .process-page .phase-2 .highlight-box { background:rgba(168,85,247,0.12); color:#d8b4fe; border-left:3px solid #a855f7; }
+  .process-page .phase-6 .highlight-box { background:rgba(34,197,94,0.12);  color:#86efac; border-left:3px solid #22c55e; }
+  .process-page .phase-8 .highlight-box { background:rgba(236,72,153,0.12); color:#f9a8d4; border-left:3px solid #ec4899; }
+  .process-page .summary-bar {
+    max-width: 860px;
+    margin: 20px auto 0;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 18px;
+    padding: 28px 36px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+  .process-page .summary-item h4 {
+    font-size: 26px;
+    font-weight: 800;
+    background: linear-gradient(90deg,#60a5fa,#38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 4px;
+  }
+  .process-page .summary-item p {
+    font-size: 13px;
+    color: #64748b;
+  }
+  .process-page .summary-divider {
+    width: 1px;
+    background: rgba(255,255,255,0.08);
+    margin: auto;
+  }
+  @media (max-width: 680px) {
+    .process-page .timeline::before { left: 28px; }
+    .process-page .phase,
+    .process-page .phase:nth-child(even) { flex-direction: column !important; padding-left: 68px; }
+    .process-page .node { left: 28px; top: 0; }
+    .process-page .card { width: 100%; }
+    .process-page .phase:nth-child(odd) .card::after,
+    .process-page .phase:nth-child(even) .card::after { display: none; }
+    .process-page .summary-bar { grid-template-columns: 1fr; }
+    .process-page .summary-divider { display: none; }
+    .process-page .header h1 { font-size: 26px; }
+  }
+</style>
+
+<div class="process-page">
+
+  <div class="header">
+    <div class="logo-row">
+      <div class="logo-icon">🦅</div>
+      <span class="company-name">Landhawk Drone Company</span>
+    </div>
+    <h1>Your Property Surveillance Roadmap</h1>
+    <p>From first conversation to fully autonomous drone coverage — here's exactly what your journey looks like, start to finish.</p>
+  </div>
+
+  <div class="timeline">
+
+    <div class="phase phase-1">
+      <div class="card">
+        <span class="phase-badge">Phase 1</span>
+        <h3>Discovery &amp; Property Assessment</h3>
+        <div class="timeline-tag">🕐 Week 1</div>
+        <p>We start with a no-pressure consultation to understand your property, your goals, and what you need your surveillance system to do for you.</p>
+        <ul class="milestones">
+          <li>Initial call to discuss your property and objectives</li>
+          <li>Review of acreage, terrain, and key areas to monitor</li>
+          <li>Connectivity assessment (cellular / Starlink availability)</li>
+          <li>Custom proposal and pricing delivered to you</li>
+        </ul>
+      </div>
+      <div class="node">📋</div>
+    </div>
+
+    <div class="phase phase-2">
+      <div class="card">
+        <span class="phase-badge">Phase 2</span>
+        <h3>Contract &amp; Project Kickoff</h3>
+        <div class="timeline-tag">🕐 Week 1–2</div>
+        <p>Once you're ready to move forward, we sign the agreement and collect the initial deposit to begin your project immediately.</p>
+        <ul class="milestones">
+          <li>Service agreement signed</li>
+          <li>50% deposit collected to initiate project</li>
+          <li>Dedicated project manager assigned to your account</li>
+          <li>Onboarding call and timeline confirmed</li>
+        </ul>
+        <div class="highlight-box">💰 50% deposit activates your project and covers site survey, FAA filing, and equipment procurement.</div>
+      </div>
+      <div class="node">✍️</div>
+    </div>
+
+    <div class="phase phase-3">
+      <div class="card">
+        <span class="phase-badge">Phase 3</span>
+        <h3>On-Site Survey &amp; System Design</h3>
+        <div class="timeline-tag">🕐 Weeks 2–3</div>
+        <p>Our team travels to your property to conduct a thorough site survey. We plan exactly where the drone dock will be placed, map out flight paths, and design your full surveillance coverage.</p>
+        <ul class="milestones">
+          <li>Full property walk-through and aerial mapping</li>
+          <li>Drone dock location scouted (power &amp; access)</li>
+          <li>Flight paths and coverage zones designed</li>
+          <li>Connectivity solution confirmed (cellular or Starlink)</li>
+          <li>Final system design document delivered</li>
+        </ul>
+      </div>
+      <div class="node">🗺️</div>
+    </div>
+
+    <div class="phase phase-4">
+      <div class="card">
+        <span class="phase-badge">Phase 4</span>
+        <h3>FAA Authorization</h3>
+        <div class="timeline-tag">🕐 Weeks 3–10 (runs in parallel)</div>
+        <p>Because your system operates autonomously beyond standard visual range, we file for FAA authorization specific to your property. This runs in the background while we prepare everything else.</p>
+        <ul class="milestones">
+          <li>FAA BVLOS authorization application filed on your behalf</li>
+          <li>Airspace and safety case documentation prepared</li>
+          <li>FAA review period (typically 30–90 days)</li>
+          <li>Authorization received — cleared for autonomous flight</li>
+        </ul>
+      </div>
+      <div class="node">🏛️</div>
+    </div>
+
+    <div class="phase phase-5">
+      <div class="card">
+        <span class="phase-badge">Phase 5</span>
+        <h3>Equipment Procurement &amp; Preparation</h3>
+        <div class="timeline-tag">🕐 Weeks 3–7 (runs in parallel)</div>
+        <p>While FAA authorization is processing, we source and configure all hardware and software for your specific property — nothing is off-the-shelf.</p>
+        <ul class="milestones">
+          <li>Drone and automated docking station ordered</li>
+          <li>Hardware configured and pre-tested</li>
+          <li>Reporting dashboard set up with your property details</li>
+          <li>Alert thresholds and notification preferences configured</li>
+          <li>Installation crew scheduled for your site</li>
+        </ul>
+      </div>
+      <div class="node">⚙️</div>
+    </div>
+
+    <div class="phase phase-6">
+      <div class="card">
+        <span class="phase-badge">Phase 6</span>
+        <h3>Installation &amp; Commissioning</h3>
+        <div class="timeline-tag">🕐 Weeks 8–11 (2–3 days on-site)</div>
+        <p>Our crew arrives at your property for a 2–3 day installation. By the time we leave, your system is fully operational and you have complete access to your dashboard.</p>
+        <ul class="milestones">
+          <li>Drone docking station mounted and weatherproofed</li>
+          <li>Power and connectivity infrastructure installed</li>
+          <li>Automated flight schedule programmed</li>
+          <li>Full system test flights completed</li>
+          <li>Client dashboard walkthrough and training</li>
+        </ul>
+        <div class="highlight-box">🚀 System goes live. Your drone begins flying automated surveillance routes across your property.</div>
+      </div>
+      <div class="node">🛠️</div>
+    </div>
+
+    <div class="phase phase-7">
+      <div class="card">
+        <span class="phase-badge">Phase 7</span>
+        <h3>Go-Live &amp; Active Surveillance</h3>
+        <div class="timeline-tag">🕐 Ongoing from Week 11</div>
+        <p>Your property is now under continuous autonomous surveillance. The drone flies multiple times per day, charges itself between flights, and sends you real-time updates — no human operator needed.</p>
+        <ul class="milestones">
+          <li>Multiple automated flights per day on your schedule</li>
+          <li>Real-time alerts pushed to your phone and email</li>
+          <li>Daily and weekly property reports delivered</li>
+          <li>Live footage accessible through your dashboard anytime</li>
+          <li>Remote system health monitoring by Landhawk team</li>
+        </ul>
+      </div>
+      <div class="node">🚁</div>
+    </div>
+
+    <div class="phase phase-8">
+      <div class="card">
+        <span class="phase-badge">Phase 8</span>
+        <h3>Ongoing Support &amp; Final Payment</h3>
+        <div class="timeline-tag">🕐 Upon Go-Live &amp; Beyond</div>
+        <p>Final payment is collected upon confirmed go-live. After that, Landhawk stays on as your long-term partner — monitoring system health, handling maintenance, and keeping your coverage uninterrupted.</p>
+        <ul class="milestones">
+          <li>Final 50% payment collected upon system go-live</li>
+          <li>Quarterly property review calls with your project manager</li>
+          <li>Annual on-site maintenance visit</li>
+          <li>Software and firmware updates managed remotely</li>
+          <li>Priority support for any system issues</li>
+        </ul>
+        <div class="highlight-box">🤝 Your investment is protected. Landhawk monitors your system year-round so you never have to think about it.</div>
+      </div>
+      <div class="node">🤝</div>
+    </div>
+
+  </div>
+
+  <div class="summary-bar">
+    <div class="summary-item">
+      <h4>8–12 Weeks</h4>
+      <p>Typical time from signed contract<br>to fully live surveillance system</p>
+    </div>
+    <div class="summary-divider"></div>
+    <div class="summary-item">
+      <h4>Zero Operators</h4>
+      <p>Fully autonomous after installation —<br>no staff required on your end</p>
+    </div>
+    <div class="summary-divider"></div>
+    <div class="summary-item">
+      <h4>365 Days/Year</h4>
+      <p>Continuous coverage across your property<br>with real-time reporting</p>
+    </div>
+  </div>
+
+</div>

@@ -56,6 +56,15 @@
       "path": "/",
       "priority": "1.0",
       "changefreq": "weekly"
+    },
+    {
+      "template": "pages/process.html",
+      "output": "process/index.html",
+      "title": "Your Property Surveillance Roadmap",
+      "meta_description": "See exactly what your journey looks like with Landhawk — from first consultation to fully autonomous drone surveillance. 8 phases, 8–12 weeks.",
+      "path": "/process/",
+      "priority": "0.8",
+      "changefreq": "monthly"
     }
   ]
 }
