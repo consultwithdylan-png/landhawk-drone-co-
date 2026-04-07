@@ -130,6 +130,15 @@ function generateSitemap(config) {
     xml += '  </url>\n';
   }
 
+  for (const post of config.blog_posts || []) {
+    xml += '  <url>\n';
+    xml += `    <loc>https://${domain}/blog/${post.slug}/</loc>\n`;
+    xml += `    <lastmod>${post.date}</lastmod>\n`;
+    xml += '    <changefreq>monthly</changefreq>\n';
+    xml += '    <priority>0.6</priority>\n';
+    xml += '  </url>\n';
+  }
+
   xml += '</urlset>\n';
   return xml;
 }
@@ -209,6 +218,41 @@ async function buildSite(siteId) {
     fs.mkdirSync(path.dirname(outPath), { recursive: true });
     fs.writeFileSync(outPath, html);
     console.log(`  ✓ ${page.output}`);
+  }
+
+  // Auto-generate individual blog post pages
+  const blogPostTemplatePath = path.join(TEMPLATES_DIR, 'pages/blog-post.html');
+  if (fs.existsSync(blogPostTemplatePath)) {
+    const blogPostSource = fs.readFileSync(blogPostTemplatePath, 'utf8');
+    const blogPostTemplate = Handlebars.compile(blogPostSource);
+
+    for (const post of config.blog_posts || []) {
+      const postPageMeta = {
+        template: 'pages/blog-post.html',
+        output: `blog/${post.slug}/index.html`,
+        title: post.title,
+        meta_description: post.meta_description,
+        path: `/blog/${post.slug}/`,
+        priority: '0.6',
+        changefreq: 'monthly',
+        post: post
+      };
+
+      const pageContent = blogPostTemplate({ ...config, page: postPageMeta });
+      const context = { ...config, page: { ...postPageMeta, content: pageContent } };
+      let html = layoutTemplate(context);
+
+      try {
+        html = await minifyHTML(html);
+      } catch (e) {
+        console.warn(`  HTML minification failed for blog/${post.slug}/index.html`);
+      }
+
+      const outPath = path.join(outputDir, `blog/${post.slug}/index.html`);
+      fs.mkdirSync(path.dirname(outPath), { recursive: true });
+      fs.writeFileSync(outPath, html);
+      console.log(`  ✓ blog/${post.slug}/index.html`);
+    }
   }
 
   // Process CSS

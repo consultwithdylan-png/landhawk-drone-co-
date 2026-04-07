@@ -1,0 +1,17 @@
+<section class="blog-index-section">
+  <div class="blog-index-header">
+    <div class="section-label">Insights</div>
+    <h1 class="blog-index-title">Drone Surveillance for Landowners</h1>
+    <p class="blog-index-sub">Practical guides on farm and ranch drone monitoring, FAA compliance, and autonomous property security.</p>
+  </div>
+  <div class="blog-list">
+    {{#each blog_posts}}
+    <article class="blog-card">
+      <time class="blog-date" datetime="{{this.date}}">{{this.date_display}}</time>
+      <h2 class="blog-card-title"><a href="/blog/{{this.slug}}/">{{this.title}}</a></h2>
+      <p class="blog-card-excerpt">{{this.excerpt}}</p>
+      <a href="/blog/{{this.slug}}/" class="blog-read-more">Read article →</a>
+    </article>
+    {{/each}}
+  </div>
+</section>
