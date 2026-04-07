@@ -624,6 +624,12 @@ nav {
   .form-row { grid-template-columns: 1fr; }
 }
 
+/* INLINE CTA */
+.inline-cta-wrap {
+  text-align: center;
+  padding: 0 2rem 3rem;
+}
+
 /* FOOTER */
 footer {
   padding: 1.75rem 2rem;
