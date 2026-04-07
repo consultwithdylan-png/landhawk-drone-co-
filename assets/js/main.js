@@ -5,8 +5,7 @@ if (form) {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(form));
 
-    // TODO: replace with your webhook URL (Formspree, GHL, Zapier, etc.)
-    const WEBHOOK_URL = '';
+    const WEBHOOK_URL = 'https://hook.us2.make.com/2rs2xngouihdwkiwf0vm39p7m0ht7zrv';
 
     try {
       if (WEBHOOK_URL) {
