@@ -11,14 +11,16 @@ if (form) {
       if (WEBHOOK_URL) {
         await fetch(WEBHOOK_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
           body: JSON.stringify(data),
         });
       }
       form.style.display = 'none';
       document.getElementById('form-success').style.display = 'block';
     } catch (err) {
-      alert('Something went wrong. Please email us directly at hello@landhawkdrone.com');
+      form.style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
     }
   });
 }
