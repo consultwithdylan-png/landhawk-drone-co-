@@ -5,7 +5,7 @@ if (form) {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(form));
 
-    const WEBHOOK_URL = 'https://dylansells.app.n8n.cloud/webhook-test/landhawk-assessment';
+    const WEBHOOK_URL = 'https://dylansells.app.n8n.cloud/webhook/landhawk-assessment';
 
     try {
       if (WEBHOOK_URL) {
